@@ -6,8 +6,6 @@ This application has been created to simulate the understanding of sentiment acr
 
 <small>**Note**: Initially planning to complete text and url and then focus on other media types in the future.</small>
 
-## Pseudocode
-
 ## Installation
 
 1. **Clone the code from this repository:**
@@ -71,3 +69,5 @@ This application has been created to simulate the understanding of sentiment acr
     ```* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)```
 
     This means your Flask app is running on your local machine (localhost) on port 5000. You can access it by opening a web browser and navigating to http://127.0.0.1:5000.
+
+    If you see another port, use that as http://127.0.0.1:port where port is the port number.
