@@ -68,8 +68,6 @@ This application has been created to simulate the understanding of sentiment acr
 
     This will start the Flask development server. You should see output similar to this:
 
-    ```
-    * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-    ```
+    ```* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)```
 
     This means your Flask app is running on your local machine (localhost) on port 5000. You can access it by opening a web browser and navigating to http://127.0.0.1:5000.
