@@ -30,16 +30,18 @@ This application has been created to simulate the understanding of sentiment acr
 
    **Creating a virtual environment**
 
-   ```
+   ```py
    virtualenv project-name-env
    ```
 
    where `project-name-env` can be any name that you want to give. Example: `virtualenv sentiment-analysis-env`
 
-   <small>Having `-env` at the end is not mandatory, that it gives an indication that helps us understand that this is a virtual environment directory.</small>
+   <small>Having **-env** at the end is not mandatory, that it gives an indication that helps us understand that this is a virtual environment directory.</small>
 
    **Activate the virtual environment to start using it.**
 
    ```
    project-name-env/Scripts/activate
    ```
+
+3. Install the necessary libraries of the project.
