@@ -51,7 +51,6 @@ $(document).ready(function () {
                 contentType: 'application/json'
             })
                 .done((response) => {
-                    console.log(response)
                     val_neg = Math.round(parseFloat(response["score_negative"]) * 10000) / 100
                     val_neu = Math.round(parseFloat(response["score_neutral"]) * 10000) / 100
                     val_pos = Math.round(parseFloat(response["score_positive"]) * 10000) / 100
