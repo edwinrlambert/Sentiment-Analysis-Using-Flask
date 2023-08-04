@@ -31,6 +31,7 @@ def home():
     elif request.method == "POST":
         response = request.get_json()
         input_type = response["type"]
+        print(input_type)
 
         # Find the input text from different types.
         input = ''
@@ -38,7 +39,9 @@ def home():
         if (input_type == "text"):
             input = response["input"]
         elif (input_type == "url"):
+            print("yes")
             link = response["input"]
+            print(link)
             article = Article(link)
             article.download()
             article.parse()
@@ -53,7 +56,13 @@ def home():
         return jsonify(sentiment_analysis)
 
 
+# Chunk the text into pieces of 510 characters.
+def chunk_text(text, max_len=510):
+    pass
+
 # * Find the polarity scores of the input.
+
+
 def find_sentiment_analysis(input):
     # Find tokenized words.
     encoded_text = tokenizer(input, return_tensors="pt")

@@ -63,3 +63,51 @@ h1 {
     background-color: #D2686E;
     border: #D2686E;
 }
+
+#sentiment-overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#sentiment-overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+#sentiment-overlay-content h2 {
+    margin-bottom: -5px;
+    line-height: 0.05;
+    font-size: medium;
+}
+
+#sentiment-overlay-content p#prominent-sentiment {
+    margin-top: 0;
+    display: inline-block;
+    font-size: 4em;
+    font-weight: bolder;
+}
+
+#sentiment-overlay-content #sentiment-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#sentiment-overlay-content #sentiment-info canvas#sentiment-radar-chart {
+    width: 5px;
+    height: 5px;
+}
