@@ -11,18 +11,29 @@ from werkzeug.utils import secure_filename
 import numpy as np
 import os
 
+import mimetypes
+from PIL import Image
+import torch
+from torchvision import transforms, models
+
+
 # Creating a blueprint for views to use for routing.
 app = Flask(__name__)
 views = Blueprint(__name__, "views")
 
+# Cache Directory
+HUGGINGFACE_CACHE_DIR = config("HUGGINGFACE_CACHE_DIR", '')
+TORCH_CACHE_DIR = config("TORCH_CACHE_DIR", '')
+os.environ['TORCH_HOME'] = TORCH_CACHE_DIR
+
 # Importing pre-trained model for Sentiment Analysis.
 SENTIMENT_MODEL = "cardiffnlp/twitter-roberta-base-sentiment-latest"
-CACHE_DIR = config("CACHE_DIR", '')
 
 # Model Training for Polarity Scores.
-tokenizer = AutoTokenizer.from_pretrained(SENTIMENT_MODEL, cache_dir=CACHE_DIR)
+tokenizer = AutoTokenizer.from_pretrained(
+    SENTIMENT_MODEL, cache_dir=HUGGINGFACE_CACHE_DIR)
 sentiment_model = AutoModelForSequenceClassification.from_pretrained(
-    SENTIMENT_MODEL, cache_dir=CACHE_DIR)
+    SENTIMENT_MODEL, cache_dir=HUGGINGFACE_CACHE_DIR)
 
 
 # * Routing for Home Page.
@@ -52,12 +63,10 @@ def home():
                 file_path = os.path.join(
                     app.root_path, 'static', 'files', filename)
                 file.save(file_path)
-                # input_text = process_file(file_path)
-
-        print(input_text)
+                input_media = process_files(file_path)
 
         # Find the sentiment values.
-        sentiment_analysis = find_sentiment_analysis(input_text)
+        sentiment_analysis = find_text_sentiment_analysis(input_text)
 
         return jsonify(sentiment_analysis)
 
@@ -87,13 +96,13 @@ def chunk_text(text, max_len=510):
 
 
 # * Process Media Files for analysis.
-def process_files(file):
-    pass
+def process_files(file_path):
+    mime_type, encoding = mimetypes.guess_type(file_path)
+    type, subtype = mime_type.split('/', 1)
+
 
 # * Find the polarity scores of the input.
-
-
-def find_sentiment_analysis(input):
+def find_text_sentiment_analysis(input):
 
     # Split the input into separate chunks.
     chunks = chunk_text(input)
