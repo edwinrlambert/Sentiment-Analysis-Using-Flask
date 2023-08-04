@@ -1,0 +1,16 @@
+@import url('https://fonts.cdnfonts.com/css/open-sans');
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #D2F2F0;
+}
+
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
