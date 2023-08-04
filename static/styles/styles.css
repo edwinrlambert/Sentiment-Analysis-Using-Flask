@@ -14,3 +14,52 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+h1 {
+    margin-bottom: 30px;
+    line-height: 0.75;
+    letter-spacing: -3px;
+    font-size: 3em;
+    color: #343A40;
+}
+
+.sentiment-text {
+    color: #D2686E;
+    font-weight: bold;
+}
+
+.prompt-buttons {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.prompt-buttons > button {
+    width: 100px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.form-label {
+    display: inline;
+    font-weight: bold;
+}
+
+#form-input-textarea {
+    display: inline-block;
+    min-height: 150px;
+    height: max-content;
+}
+
+#form-input-url {
+    display: inline-block;
+    height: max-content;
+}
+
+.submit-button > input {
+    margin: 5px 0;
+    background-color: #D2686E;
+    border: #D2686E;
+}
