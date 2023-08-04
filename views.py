@@ -2,15 +2,17 @@
 # ? VIEWS.PY
 
 # Importing dependencies.
-from flask import Blueprint, render_template, request, jsonify
+from flask import Flask, Blueprint, render_template, request, jsonify
+from decouple import config
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from scipy.special import softmax
-from decouple import config
-import numpy as np
-
 from goose3 import Goose
+from werkzeug.utils import secure_filename
+import numpy as np
+import os
 
 # Creating a blueprint for views to use for routing.
+app = Flask(__name__)
 views = Blueprint(__name__, "views")
 
 # Importing pre-trained model for Sentiment Analysis.
@@ -31,32 +33,36 @@ def home():
         return render_template("index.html")
     # When a form input is received, show the sentiment based on the input.
     elif request.method == "POST":
-        response = request.get_json()
-        input_type = response["type"]
+        input_type = request.form.get("type")
 
         # Find the input text from different types.
-        input = ''
+        input_text = ''
 
         if (input_type == "text"):
-            input = response["input"]
+            input_text = request.form.get("input")
         elif (input_type == "url"):
-            url = response["input"]
+            url = request.form.get("input")
             g = Goose()
             article = g.extract(url=url)
-            input = article.cleaned_text
-
+            input_text = article.cleaned_text
         elif (input_type == "media"):
-            pass
+            file = request.files.get("input")
+            if file:
+                filename = secure_filename(file.filename)
+                file_path = os.path.join(
+                    app.root_path, 'static', 'files', filename)
+                file.save(file_path)
+                # input_text = process_file(file_path)
 
-        print(input)
+        print(input_text)
 
         # Find the sentiment values.
-        sentiment_analysis = find_sentiment_analysis(input)
+        sentiment_analysis = find_sentiment_analysis(input_text)
 
         return jsonify(sentiment_analysis)
 
 
-# Chunk the text into pieces of 510 characters.
+# * Chunk the text into pieces of 510 characters.
 def chunk_text(text, max_len=510):
     sentences = text.split(". ")
     chunks = []
@@ -80,7 +86,13 @@ def chunk_text(text, max_len=510):
         return chunks
 
 
+# * Process Media Files for analysis.
+def process_files(file):
+    pass
+
 # * Find the polarity scores of the input.
+
+
 def find_sentiment_analysis(input):
 
     # Split the input into separate chunks.

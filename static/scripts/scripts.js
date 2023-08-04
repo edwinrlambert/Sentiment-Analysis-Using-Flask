@@ -26,29 +26,28 @@ $(document).ready(function () {
     $("#btn-find-sentiment").click((e) => {
         e.preventDefault();
 
-        let input = ""
+        let formData = new FormData();
+
         if ($("#div-textarea").is(":visible")) {
-            input = $("#form-input-textarea").val();
-            type = "text";
+            formData.append("input", $("#form-input-textarea").val());
+            formData.append("type", "text")
         } else if ($("#div-url").is(":visible")) {
-            input = $("#form-input-url").val();
-            type = "url";
+            formData.append("input", $("#form-input-url").val());
+            formData.append("type", "url")
         } else if ($("#div-media").is(":visible")) {
-            input = $("#form-input-media").val();
-            type = "media";
+            formData.append("input", $("#form-input-media")[0].files[0]);
+            formData.append("type", "media")
         }
 
-        if (input != '') {
+        if (formData.get("input") != '') {
             $("#sentiment-overlay").css("display", "block");
             $.ajax({
                 type: "POST",
                 url: '/',
-                data: JSON.stringify({
-                    "input": input,
-                    "type": type
-                }),
+                data: formData,
                 dataType: 'json',
-                contentType: 'application/json'
+                contentType: false,
+                processData: false,
             })
                 .done((response) => {
                     val_neg = Math.round(parseFloat(response["score_negative"]) * 10000) / 100
