@@ -56,7 +56,18 @@ This application has been created to simulate the understanding of sentiment acr
 
     This will install all of the packages listed in the requirements.txt file.
 
-4. **Running the project**
+4. **Change the .env directory variables.**
+
+    Create a .env file and input the necessary directory locations for your cache to be saved. Please note, that this is a big file and would need space necessary for input.
+
+    Inside, the .env file, update the variable directory location. An example is posted in .env.example file.
+
+    ```
+    HUGGINGFACE_CACHE_DIR = ["your-hugging-face-cache-directory"]
+    TORCH_CACHE_DIR = ["your-torch-cache-directory"]
+    ```
+
+5. **Running the project**
 
     A flask project can be run using the following command:
 
