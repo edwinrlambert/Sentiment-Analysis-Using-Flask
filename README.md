@@ -44,49 +44,66 @@ This application has been created to simulate the understanding of sentiment acr
 
 3. **Install the necessary libraries of the project.**
 
-    Use the **requirements.txt** file to install all the dependencies/libraries used in this project. 
+   Use the **requirements.txt** file to install all the dependencies/libraries used in this project.
 
-    Since we're installing this in a virtual environment, all the libraries will be installed within this environment.
+   Since we're installing this in a virtual environment, all the libraries will be installed within this environment.
 
-    To install packages from a **requirements.txt** file, you would use:
+   To install packages from a **requirements.txt** file, you would use:
 
-    ```py
-    pip install -r requirements.txt
-    ```
+   ```py
+   pip install -r requirements.txt
+   ```
 
-    This will install all of the packages listed in the requirements.txt file.
+   This will install all of the packages listed in the requirements.txt file.
 
-4. **Change the .env directory variables.**
+4. **Install additional transformers libraries, as required**
 
-    Create a .env file and input the necessary directory locations for your cache to be saved. Please note, that this is a big file and would need space necessary for input.
+   If you get error based on the transformers library from huggingface, just update the rest [PyTorch, TensorFlow, Flax] from their installation page: https://huggingface.co/docs/transformers/installation
 
-    Inside, the .env file, update the variable directory location. An example is posted in .env.example file.
+   ```py
+   pip install transformers[torch]
+   ```
 
-    ```
-    HUGGINGFACE_CACHE_DIR = ["your-hugging-face-cache-directory"]
-    TORCH_CACHE_DIR = ["your-torch-cache-directory"]
-    ```
+   ```py
+   pip install transformers[tf-cpu]
+   ```
 
-5. **Running the project**
+   ```py
+   pip install transformers[flax]
+   ```
 
-    A flask project can be run using the following command:
+5. **Change the .env directory variables.**
 
-    ```
-    python app.py
-    ```
+   Create a .env file and input the necessary directory locations for your cache to be saved. Please note, that this is a big file and would need space necessary for input.
 
-    This will start the Flask development server. You should see output similar to this:
+   Inside, the .env file, update the variable directory location. An example is posted in .env.example file.
 
-    ```* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)```
+   ```
+   HUGGINGFACE_CACHE_DIR = ["your-hugging-face-cache-directory"]
+   TORCH_CACHE_DIR = ["your-torch-cache-directory"]
+   ```
 
-    This means your Flask app is running on your local machine (localhost) on port 5000. You can access it by opening a web browser and navigating to http://127.0.0.1:5000.
+6. **Running the project**
 
-    If you see another port, use that as http://127.0.0.1:port where port is the port number.
+   A flask project can be run using the following command:
+
+   ```
+   python app.py
+   ```
+
+   This will start the Flask development server. You should see output similar to this:
+
+   `* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
+
+   This means your Flask app is running on your local machine (localhost) on port 5000. You can access it by opening a web browser and navigating to http://127.0.0.1:5000.
+
+   If you see another port, use that as http://127.0.0.1:port where port is the port number.
 
 ## Testing
-The web application currently shows the sentiment of text and url. 
 
-*(**Note:** Media is a future implementation. I have the idea of transcribing audios and videos to get the text and finding the sentiment via that. But images would be different as it needs object identification to notice if it's a facial, object or other representation. I also wanted to use libraries like DeepFace and then implement an average for videos so that the visual and auditory elements are taken into consideration for the sentiment analysis. I'm still learning. :D Woohoo!)*
+The web application currently shows the sentiment of text and url.
+
+_(**Note:** Media is a future implementation. I have the idea of transcribing audios and videos to get the text and finding the sentiment via that. But images would be different as it needs object identification to notice if it's a facial, object or other representation. I also wanted to use libraries like DeepFace and then implement an average for videos so that the visual and auditory elements are taken into consideration for the sentiment analysis. I'm still learning. :D Woohoo!)_
 
 Once the application starts running, you get this screen in the home page. By default, the page routes to Text sentiment analysis.
 
@@ -106,9 +123,10 @@ Once you have selected the relevant method of analysis, input the content which 
 
 Please note, that since the RoBERTa model from transformers have a max length of 510 characters, I've chunking the sections and analyzing the content and finding the average sentiment. This can probably show incorrect or skewed result since the context dependency of all chunks is analyzed separate.
 
-The analysis is done and the result is shown as an overlay with the ```prominent sentiment```, ```negative, neutral and positive sentiment values``` and ```a radar chart with the sentiment values```.
+The analysis is done and the result is shown as an overlay with the `prominent sentiment`, `negative, neutral and positive sentiment values` and `a radar chart with the sentiment values`.
 
 ### Testing for Text Sentiment Analysis
+
 In the textarea, specify the text that you want to analyze and click on the "Find Sentiment" button.
 
 **Example for a Positive sentence:** "Despite the challenges life throws your way, you possess the strength and resilience to overcome them and emerge even stronger."
@@ -128,6 +146,7 @@ In the textarea, specify the text that you want to analyze and click on the "Fin
 ![sentiment analysis for random paragraph](./static/images/screens/text-random.png)
 
 ### Testing for URL Sentiment Analysis
+
 In the case of URL Sentiment Analysis, just copy-paste the url that you want to analyze. Do note, that this is an sentiment analysis done for the text content in that webpage.
 
 **Example for URL:**: "https://www.nytimes.com/guides/well/how-to-be-happy"

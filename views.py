@@ -10,12 +10,7 @@ from goose3 import Goose
 from werkzeug.utils import secure_filename
 import numpy as np
 import os
-
 import mimetypes
-from PIL import Image
-import torch
-from torchvision import transforms, models
-
 
 # Creating a blueprint for views to use for routing.
 app = Flask(__name__)
