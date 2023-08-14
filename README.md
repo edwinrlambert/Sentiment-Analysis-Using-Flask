@@ -2,9 +2,9 @@
 
 This is a sentiment analysis project created using Flask.
 
-This application has been created to simulate the understanding of sentiment across various medias such as text, url, audio or video.
+This application has been created to simulate the understanding of sentiment across various media such as text, URL, audio or video.
 
-<small>**Note**: Initially planning to complete text and url and then focus on other media types in the future.</small>
+<small>**Note**: Initially planning to complete text and URL and then focus on other media types in the future.</small>
 
 ## Installation
 
@@ -16,7 +16,7 @@ This application has been created to simulate the understanding of sentiment acr
 
 2. **Create a virtual environment using the `virtualenv` command.**
 
-   Virtual environments are created so that the libraries that are installed and used for this project won't impact any other libraries installed for other projects. This creates an encapsulation for the project, so that anything installed for this project can only be used for this project.
+   Virtual environments are created so that the libraries that are installed and used for this project won't impact any other libraries installed for other projects. This creates an encapsulation for the project so that anything installed for this project can only be used for this project.
 
    Do the following in the terminal.
 
@@ -34,7 +34,7 @@ This application has been created to simulate the understanding of sentiment acr
 
    where `project-name-env` can be any name that you want to give. Example: `virtualenv sentiment-analysis-env`
 
-   <small>Having **-env** at the end is not mandatory, that it gives an indication that helps us understand that this is a virtual environment directory.</small>
+   <small>Having **-env** at the end is not mandatory, it gives an indication that helps us understand that this is a virtual environment directory.</small>
 
    **Activate the virtual environment to start using it.**
 
@@ -42,7 +42,7 @@ This application has been created to simulate the understanding of sentiment acr
    project-name-env/Scripts/activate
    ```
 
-3. **Install the necessary libraries of the project.**
+3. **Install the necessary libraries for the project.**
 
    Use the **requirements.txt** file to install all the dependencies/libraries used in this project.
 
@@ -58,7 +58,7 @@ This application has been created to simulate the understanding of sentiment acr
 
 4. **Install additional transformers libraries, as required**
 
-   If you get error based on the transformers library from huggingface, just update the rest [PyTorch, TensorFlow, Flax] from their installation page: https://huggingface.co/docs/transformers/installation
+   If you get an error based on the transformers library from huggingface, just update the rest [PyTorch, TensorFlow, Flax] from their installation page: https://huggingface.co/docs/transformers/installation
 
    ```py
    pip install transformers[torch]
@@ -85,7 +85,7 @@ This application has been created to simulate the understanding of sentiment acr
 
 6. **Running the project**
 
-   A flask project can be run using the following command:
+   A Flask project can be run using the following command:
 
    ```
    python app.py
@@ -97,13 +97,13 @@ This application has been created to simulate the understanding of sentiment acr
 
    This means your Flask app is running on your local machine (localhost) on port 5000. You can access it by opening a web browser and navigating to http://127.0.0.1:5000.
 
-   If you see another port, use that as http://127.0.0.1:port where port is the port number.
+   If you see another port, use that as http://127.0.0.1:port where the port is the port number.
 
 ## Testing
 
-The web application currently shows the sentiment of text and url.
+The web application currently shows the sentiment of text and URL.
 
-_(**Note:** Media is a future implementation. I have the idea of transcribing audios and videos to get the text and finding the sentiment via that. But images would be different as it needs object identification to notice if it's a facial, object or other representation. I also wanted to use libraries like DeepFace and then implement an average for videos so that the visual and auditory elements are taken into consideration for the sentiment analysis. I'm still learning. :D Woohoo!)_
+_(**Note:** Media is a future implementation. I have the idea of transcribing audio and videos to get the text and finding the sentiment via that. But images would be different as it needs object identification to notice if it's a facial, object or other representation. I also wanted to use libraries like DeepFace and then implement an average for videos so that the visual and auditory elements are taken into consideration for the sentiment analysis. I'm still learning. :D Woohoo!)_
 
 Once the application starts running, you get this screen in the home page. By default, the page routes to Text sentiment analysis.
 
@@ -147,7 +147,7 @@ In the textarea, specify the text that you want to analyze and click on the "Fin
 
 ### Testing for URL Sentiment Analysis
 
-In the case of URL Sentiment Analysis, just copy-paste the url that you want to analyze. Do note, that this is an sentiment analysis done for the text content in that webpage.
+In the case of URL Sentiment Analysis, just copy-paste the URL that you want to analyze. Do note, that this is a sentiment analysis done for the text content on that webpage.
 
 **Example for URL:**: "https://www.nytimes.com/guides/well/how-to-be-happy"
 
