@@ -156,3 +156,7 @@ In the case of URL Sentiment Analysis, just copy-paste the url that you want to 
 ### Testing for Media Sentiment Analysis
 
 [work in-progress]
+
+## License
+
+This project is open-sourced under the MIT License.
